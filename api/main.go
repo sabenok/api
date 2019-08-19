@@ -1,15 +1,15 @@
 package api
 
 import (
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/go-pg/pg"
 	"github.com/noah-blockchain/noah-explorer-api/api/v1"
 	"github.com/noah-blockchain/noah-explorer-api/api/validators"
 	"github.com/noah-blockchain/noah-explorer-api/core"
 	"github.com/noah-blockchain/noah-explorer-api/errors"
 	"github.com/noah-blockchain/noah-explorer-api/helpers"
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
-	"github.com/go-pg/pg"
 	"gopkg.in/go-playground/validator.v8"
 	"net/http"
 )
@@ -71,7 +71,7 @@ func registerApiValidators() {
 		err = v.RegisterValidation("noahTxHash", validators.NoahTxHash)
 		helpers.CheckErr(err)
 
-		err = v.RegisterValidation("noahPubKey", validators.NoahPublicKey)
+		err = v.RegisterValidation("noahPubKey", validators.NoahPublicKey) // todo
 		helpers.CheckErr(err)
 
 		err = v.RegisterValidation("timestamp", validators.Timestamp)

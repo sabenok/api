@@ -1,8 +1,8 @@
 package invalid_transaction
 
 import (
-	"github.com/noah-blockchain/noah-explorer-tools/models"
 	"github.com/go-pg/pg"
+	"github.com/noah-blockchain/noah-explorer-tools/models"
 )
 
 type Repository struct {
