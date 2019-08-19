@@ -1,12 +1,13 @@
 package reward
 
 import (
+	"time"
+
+	"github.com/go-pg/pg"
 	"github.com/noah-blockchain/noah-explorer-api/events"
 	"github.com/noah-blockchain/noah-explorer-api/helpers"
 	"github.com/noah-blockchain/noah-explorer-api/tools"
 	"github.com/noah-blockchain/noah-explorer-tools/models"
-	"github.com/go-pg/pg"
-	"time"
 )
 
 type Repository struct {

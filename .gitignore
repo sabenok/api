@@ -78,4 +78,4 @@ fabric.properties
 /config.json
 /builds/
 .DS_Store
-vendor/
+vendor
