@@ -76,3 +76,4 @@ fabric.properties
 
 /config.json
 /builds/
+vendor/
