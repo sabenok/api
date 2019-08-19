@@ -30,6 +30,7 @@
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
+.idea
 
 # CMake
 cmake-build-*/
@@ -76,3 +77,5 @@ fabric.properties
 
 /config.json
 /builds/
+.DS_Store
+vendor

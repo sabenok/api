@@ -1,6 +1,10 @@
 package blocks
 
 import (
+	"net/http"
+	"strconv"
+
+	"github.com/gin-gonic/gin"
 	"github.com/noah-blockchain/noah-explorer-api/blocks"
 	"github.com/noah-blockchain/noah-explorer-api/core"
 	"github.com/noah-blockchain/noah-explorer-api/errors"
@@ -9,9 +13,6 @@ import (
 	"github.com/noah-blockchain/noah-explorer-api/tools"
 	"github.com/noah-blockchain/noah-explorer-api/transaction"
 	"github.com/noah-blockchain/noah-explorer-tools/models"
-	"github.com/gin-gonic/gin"
-	"net/http"
-	"strconv"
 )
 
 // TODO: replace string to int
