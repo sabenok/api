@@ -27,6 +27,6 @@ func (Multisend) TransformByTxOutput(txData resource.ItemInterface) resource.Int
 	return Send{
 		Coin:  data.Coin.Symbol,
 		To:    data.ToAddress.GetAddress(),
-		Value: helpers.PipStr2Bip(data.Value),
+		Value: helpers.QNoahStr2Noah(data.Value),
 	}
 }

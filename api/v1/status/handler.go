@@ -97,10 +97,10 @@ func GetStatusPage(c *gin.Context) {
 			"txPerSecond":         getTransactionSpeed(tx24hData.Count),
 			"activeValidators":    activeValidators,
 			"activeCandidates":    activeCandidates,
-			"averageTxCommission": helpers.Unit2Bip(tx24hData.FeeAvg),
-			"totalCommission":     helpers.Unit2Bip(tx24hData.FeeSum),
+			"averageTxCommission": helpers.Unit2Noah(tx24hData.FeeAvg),
+			"totalCommission":     helpers.Unit2Noah(tx24hData.FeeSum),
 			"totalDelegatedBip":   stakesSum,
-			"customCoinsSum":      helpers.PipStr2Bip(customCoinsData.ReserveSum),
+			"customCoinsSum":      helpers.QNoahStr2Noah(customCoinsData.ReserveSum),
 			"customCoinsCount":    customCoinsData.Count,
 			"freeFloatBip":        getFreeBipSum(stakesSum, lastBlock.ID),
 			"bipEmission":         helpers.CalculateEmission(lastBlock.ID),
@@ -162,7 +162,7 @@ func getStakesSum(explorer *core.Explorer, ch chan string) {
 		sum, err := explorer.StakeRepository.GetSumInBipValue()
 		helpers.CheckErr(err)
 
-		return helpers.PipStr2Bip(sum)
+		return helpers.QNoahStr2Noah(sum)
 	}, StatusPageCacheTime).(string)
 }
 

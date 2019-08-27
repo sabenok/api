@@ -22,6 +22,6 @@ func (DeclareCandidacy) Transform(txData resource.ItemInterface, params ...inter
 		PubKey:     data.PubKey,
 		Commission: data.Commission,
 		Coin:       data.Coin,
-		Stake:      helpers.PipStr2Bip(data.Stake),
+		Stake:      helpers.QNoahStr2Noah(data.Stake),
 	}
 }

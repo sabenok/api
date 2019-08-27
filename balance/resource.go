@@ -16,6 +16,6 @@ func (Resource) Transform(model resource.ItemInterface, params ...interface{}) r
 
 	return Resource{
 		Coin:   balance.Coin.Symbol,
-		Amount: helpers.PipStr2Bip(balance.Value),
+		Amount: helpers.QNoahStr2Noah(balance.Value),
 	}
 }

@@ -20,8 +20,8 @@ func (CreateCoin) Transform(txData resource.ItemInterface, params ...interface{}
 	return CreateCoin{
 		Name:                 data.Name,
 		Symbol:               data.Symbol,
-		InitialAmount:        helpers.PipStr2Bip(data.InitialAmount),
-		InitialReserve:       helpers.PipStr2Bip(data.InitialReserve),
+		InitialAmount:        helpers.QNoahStr2Noah(data.InitialAmount),
+		InitialReserve:       helpers.QNoahStr2Noah(data.InitialReserve),
 		ConstantReserveRatio: data.ConstantReserveRatio,
 	}
 }

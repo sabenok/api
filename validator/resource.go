@@ -32,7 +32,7 @@ func (r Resource) Transform(model resource.ItemInterface, params ...interface{})
 
 	var stake *string
 	if validator.TotalStake != nil {
-		val := helpers.PipStr2Bip(*validator.TotalStake)
+		val := helpers.QNoahStr2Noah(*validator.TotalStake)
 		stake = &val
 	}
 

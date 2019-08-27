@@ -45,7 +45,7 @@ func TransformCheckData(raw string) CheckData {
 	return CheckData{
 		Coin:     data.Coin.String(),
 		Nonce:    base64.StdEncoding.EncodeToString(data.Nonce[:]),
-		Value:    helpers.PipStr2Bip(data.Value.String()),
+		Value:    helpers.QNoahStr2Noah(data.Value.String()),
 		Sender:   sender.String(),
 		DueBlock: data.DueBlock,
 	}

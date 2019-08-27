@@ -1,9 +1,10 @@
 package data_resources
 
 import (
-	"github.com/noah-blockckain/noh-explorer-api/helpers"
-	"github.com/noah-blockckain/noh-explorer-api/resource"
-	"github.com/noah-blockckain/noh-explorer-tools/models"
+
+	"github.com/noah-blockchain/noah-explorer-api/helpers"
+	"github.com/noah-blockchain/noah-explorer-api/resource"
+	"github.com/noah-blockchain/noah-explorer-tools/models"
 )
 
 type Unbond struct {
@@ -18,6 +19,6 @@ func (Unbond) Transform(txData resource.ItemInterface, params ...interface{}) re
 	return Unbond{
 		PubKey: data.PubKey,
 		Coin:   data.Coin,
-		Value:  helpers.PipStr2Bip(data.Value),
+		Value:  helpers.QNoahStr2Noah(data.Value),
 	}
 }

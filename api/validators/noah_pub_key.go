@@ -6,7 +6,7 @@ import (
 	"regexp"
 )
 
-func zPublicKey(
+func NoahPublicKey(
 	v *validator.Validate, topStruct reflect.Value, currentStructOrField reflect.Value,
 	field reflect.Value, fieldType reflect.Type, fieldKind reflect.Kind, param string,
 ) bool {

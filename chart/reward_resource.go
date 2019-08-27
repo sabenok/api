@@ -17,6 +17,6 @@ func (RewardResource) Transform(model resource.ItemInterface, params ...interfac
 
 	return RewardResource{
 		Time:   data.Time.Format(time.RFC3339),
-		Amount: helpers.PipStr2Bip(data.Amount),
+		Amount: helpers.QNoahStr2Noah(data.Amount),
 	}
 }

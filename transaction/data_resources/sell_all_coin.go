@@ -21,8 +21,8 @@ func (SellAllCoin) Transform(txData resource.ItemInterface, params ...interface{
 	return SellAllCoin{
 		CoinToSell:        data.CoinToSell,
 		CoinToBuy:         data.CoinToBuy,
-		ValueToSell:       helpers.PipStr2Bip(model.Tags["tx.sell_amount"]),
-		ValueToBuy:        helpers.PipStr2Bip(model.Tags["tx.return"]),
-		MinimumValueToBuy: helpers.PipStr2Bip(data.MinimumValueToBuy),
+		ValueToSell:       helpers.QNoahStr2Noah(model.Tags["tx.sell_amount"]),
+		ValueToBuy:        helpers.QNoahStr2Noah(model.Tags["tx.return"]),
+		MinimumValueToBuy: helpers.QNoahStr2Noah(data.MinimumValueToBuy),
 	}
 }

@@ -2,6 +2,7 @@ package core
 
 import (
 	"github.com/noah-blockchain/noah-explorer-api/helpers"
+	"github.com/centrifugal/centrifuge-go"
 )
 
 type ExtenderWsClient struct {
