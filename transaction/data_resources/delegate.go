@@ -18,6 +18,6 @@ func (Delegate) Transform(txData resource.ItemInterface, params ...interface{}) 
 	return Delegate{
 		PubKey: data.PubKey,
 		Coin:   data.Coin,
-		Value:  helpers.PipStr2Bip(data.Value),
+		Value:  helpers.QNoahStr2Noah(data.Value),
 	}
 }

@@ -22,7 +22,7 @@ func (Resource) Transform(model resource.ItemInterface, params ...interface{}) r
 	return Resource{
 		BlockID:   reward.BlockID,
 		Role:      reward.Role,
-		Amount:    helpers.PipStr2Bip(reward.Amount),
+		Amount:    helpers.QNoahStr2Noah(reward.Amount),
 		Address:   reward.Address.GetAddress(),
 		Validator: reward.Validator.GetPublicKey(),
 		Timestamp: reward.Block.CreatedAt.Format(time.RFC3339),

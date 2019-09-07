@@ -19,7 +19,7 @@ func (resource Resource) Transform(model resource.ItemInterface, params ...inter
 	return Resource{
 		Coin:     stake.Coin.Symbol,
 		PubKey:   stake.Validator.GetPublicKey(),
-		Value:    helpers.PipStr2Bip(stake.Value),
-		BipValue: helpers.PipStr2Bip(stake.BipValue),
+		Value:    helpers.QNoahStr2Noah(stake.Value),
+		BipValue: helpers.QNoahStr2Noah(stake.BipValue),
 	}
 }

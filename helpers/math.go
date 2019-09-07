@@ -6,15 +6,15 @@ import (
 	"time"
 )
 
-// default amount of pips in 1 bip
-var pipInBip = big.NewFloat(1000000000000000000)
+// default amount of qNoahs in 1 Noah
+var qNoahInNoah = big.NewFloat(1000000000000000000)
 
 var feeDefaultMultiplier = big.NewInt(1000000000000000)
 
-// default amount of unit in one bip
-const unitInBip = 1000
+// default amount of unit in one noah
+const unitInNoah = 1000
 
-func PipStr2Bip(value string) string {
+func QNoahStr2Noah(value string) string {
 	if value == "" {
 		return "0"
 	}
@@ -22,11 +22,11 @@ func PipStr2Bip(value string) string {
 	floatValue, err := new(big.Float).SetPrec(500).SetString(value)
 	CheckErrBool(err)
 
-	return new(big.Float).SetPrec(500).Quo(floatValue, pipInBip).Text('f', 18)
+	return new(big.Float).SetPrec(500).Quo(floatValue, qNoahInNoah).Text('f', 18)
 }
 
-func Fee2Bip(value uint64) string {
-	return PipStr2Bip(new(big.Int).Mul(feeDefaultMultiplier, new(big.Int).SetUint64(value)).String())
+func Fee2Noah(value uint64) string {
+	return QNoahStr2Noah(new(big.Int).Mul(feeDefaultMultiplier, new(big.Int).SetUint64(value)).String())
 }
 
 func CalculatePercent(part string, total string) string {
@@ -49,8 +49,8 @@ func Nano2Seconds(nano uint64) float64 {
 	return float64(nano) / float64(time.Second)
 }
 
-func Unit2Bip(units float64) float64 {
-	return units / unitInBip
+func Unit2Noah(units float64) float64 {
+	return units / unitInNoah
 }
 
 func Seconds2Nano(sec int) float64 {

@@ -12,27 +12,27 @@ type tCase struct {
 func TestValidateNoahAddress(t *testing.T) {
 	tCases := []tCase{
 		{
-			Address: "Noahxce542add0391b893d58c5fad21339f0f312cfa30",
+			Address: "NOAHxce542add0391b893d58c5fad21339f0f312cfa30",
 			Valid:   true,
 		},
 		{
-			Address: "NoahxCE542ADD0391B893D58C5FAD21339F0F312CFA30",
+			Address: "NOAHxCE542ADD0391B893D58C5FAD21339F0F312CFA30",
 			Valid:   true,
 		},
 		{
-			Address: "NoahxCE542ADD0391B893D58C5FAD21339F0F312CFA301",
+			Address: "NOAHxCE542ADD0391B893D58C5FAD21339F0F312CFA301",
 			Valid:   false,
 		},
 		{
-			Address: "NoahXCE542ADD0391B893D58C5FAD21339F0F312CFA30",
+			Address: "NOAHXCE542ADD0391B893D58C5FAD21339F0F312CFA30",
 			Valid:   false,
 		},
 		{
-			Address: "NoahxHE542ADD0391B893D58C5FAD21339F0F312CFA30",
+			Address: "NOAHxHE542ADD0391B893D58C5FAD21339F0F312CFA30",
 			Valid:   false,
 		},
 		{
-			Address: "Noahxce542add0391b893d58c5fad21339f0f312cfa3",
+			Address: "NOAHxce542add0391b893d58c5fad21339f0f312cfa3",
 			Valid:   false,
 		},
 	}

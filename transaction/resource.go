@@ -33,7 +33,7 @@ func (Resource) Transform(model resource.ItemInterface, params ...interface{}) r
 		Nonce:     tx.Nonce,
 		Block:     tx.BlockID,
 		Timestamp: tx.CreatedAt.Format(time.RFC3339),
-		Fee:       helpers.Fee2Bip(tx.GetFee()),
+		Fee:       helpers.Fee2Noah(tx.GetFee()),
 		Type:      tx.Type,
 		Payload:   base64.StdEncoding.EncodeToString(tx.Payload[:]),
 		From:      tx.FromAddress.GetAddress(),

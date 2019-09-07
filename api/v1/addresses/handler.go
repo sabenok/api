@@ -182,7 +182,7 @@ func GetDelegations(c *gin.Context) {
 	helpers.CheckErr(err)
 
 	// create additional field
-	additionalFields := map[string]interface{}{"total_delegated_bip_value": helpers.PipStr2Bip(totalDelegated)}
+	additionalFields := map[string]interface{}{"total_delegated_bip_value": helpers.QNoahStr2Noah(totalDelegated)}
 
 	c.JSON(http.StatusOK, resource.TransformPaginatedCollectionWithAdditionalFields(
 		delegations, delegation.Resource{}, pagination, additionalFields))

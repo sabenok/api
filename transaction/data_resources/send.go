@@ -18,6 +18,6 @@ func (Send) Transform(txData resource.ItemInterface, params ...interface{}) reso
 	return Send{
 		Coin:  data.Coin,
 		To:    data.To,
-		Value: helpers.PipStr2Bip(data.Value),
+		Value: helpers.QNoahStr2Noah(data.Value),
 	}
 }

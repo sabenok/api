@@ -28,7 +28,7 @@ func (Resource) Transform(model resource.ItemInterface, params ...interface{}) r
 		NumTxs:      block.NumTxs,
 		BlockTime:   helpers.Nano2Seconds(block.BlockTime),
 		Timestamp:   block.CreatedAt.Format(time.RFC3339),
-		BlockReward: helpers.PipStr2Bip(block.BlockReward),
+		BlockReward: helpers.QNoahStr2Noah(block.BlockReward),
 		Hash:        block.GetHash(),
 		Validators:  resource.TransformCollection(block.BlockValidators, ValidatorResource{}),
 	}
