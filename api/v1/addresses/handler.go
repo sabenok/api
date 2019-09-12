@@ -1,6 +1,7 @@
 package addresses
 
 import (
+	"github.com/gin-gonic/gin"
 	"github.com/noah-blockchain/noah-explorer-api/address"
 	"github.com/noah-blockchain/noah-explorer-api/chart"
 	"github.com/noah-blockchain/noah-explorer-api/core"
@@ -15,7 +16,6 @@ import (
 	"github.com/noah-blockchain/noah-explorer-api/tools"
 	"github.com/noah-blockchain/noah-explorer-api/transaction"
 	"github.com/noah-blockchain/noah-explorer-tools/models"
-	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
@@ -178,11 +178,11 @@ func GetDelegations(c *gin.Context) {
 	delegations := explorer.StakeRepository.GetByAddress(*noahAddress, &pagination)
 
 	// fetch total delegated sum
-	totalDelegated, err := explorer.StakeRepository.GetSumInBipValueByAddress(*noahAddress)
+	totalDelegated, err := explorer.StakeRepository.GetSumInNoahValueByAddress(*noahAddress)
 	helpers.CheckErr(err)
 
 	// create additional field
-	additionalFields := map[string]interface{}{"total_delegated_bip_value": helpers.QNoahStr2Noah(totalDelegated)}
+	additionalFields := map[string]interface{}{"total_delegated_noah_value": helpers.QNoahStr2Noah(totalDelegated)}
 
 	c.JSON(http.StatusOK, resource.TransformPaginatedCollectionWithAdditionalFields(
 		delegations, delegation.Resource{}, pagination, additionalFields))

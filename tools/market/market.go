@@ -1,18 +1,19 @@
 package market
 
 import (
-	"github.com/noah-blockchain/noah-explorer-api/bipdev"
+	"github.com/noah-blockchain/noah-explorer-api/noahdev"
+	"github.com/noah-blockchain/noah-explorer-api/noahdev/responses"
 )
 
 type Service struct {
-	api      *bipdev.Api
+	api      *noahdev.Api
 	baseCoin string
 }
 
-func NewService(bipdevApi *bipdev.Api, basecoin string) *Service {
+func NewService(noahDevApi *noahdev.Api, baseCoin string) *Service {
 	return &Service{
-		api:      bipdevApi,
-		baseCoin: basecoin,
+		api:      noahDevApi,
+		baseCoin: baseCoin,
 	}
 }
 
@@ -23,10 +24,14 @@ type PriceChange struct {
 
 func (s *Service) GetCurrentFiatPriceChange(coin string, currency string) (*PriceChange, error) {
 	if coin == s.baseCoin && currency == USDTicker {
-		response, err := s.api.GetCurrentPrice()
-		if err != nil {
-			return nil, err
-		}
+		//response, err := s.api.GetCurrentPrice()
+		//if err != nil {
+		//	return nil, err
+		//}
+
+		response := responses.CurrentPriceResponse{} // TODO fix
+		response.Data.Price = 1000
+		response.Data.Delta = 1.0
 
 		return &PriceChange{
 			Price:  response.Data.Price / 10000,

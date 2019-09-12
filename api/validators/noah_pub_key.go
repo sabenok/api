@@ -14,5 +14,5 @@ func NoahPublicKey(
 }
 
 func isValidNoahPublicKey(publicKey string) bool {
-	return regexp.MustCompile("^Mp([A-Fa-f0-9]{64})$").MatchString(publicKey)
+	return regexp.MustCompile("^Np([A-Fa-f0-9]{64,66})$").MatchString(publicKey)
 }

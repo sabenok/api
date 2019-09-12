@@ -2,6 +2,7 @@ package status
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/noah-blockchain/noah-explorer-api/coins"
 	"github.com/noah-blockchain/noah-explorer-api/core"
 	"github.com/noah-blockchain/noah-explorer-api/core/config"
@@ -9,7 +10,6 @@ import (
 	"github.com/noah-blockchain/noah-explorer-api/tools/market"
 	"github.com/noah-blockchain/noah-explorer-api/transaction"
 	"github.com/noah-blockchain/noah-explorer-tools/models"
-	"github.com/gin-gonic/gin"
 	"math"
 	"net/http"
 	"strconv"
@@ -18,7 +18,7 @@ import (
 
 const LastDataCacheTime = time.Duration(60)
 const SlowAvgBlocksCacheTime = time.Duration(300)
-const BipPriceCacheTime = time.Duration(300)
+const NoahPriceCacheTime = time.Duration(300)
 const StatusPageCacheTime = 1
 
 func GetStatus(c *gin.Context) {
@@ -41,8 +41,8 @@ func GetStatus(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"data": gin.H{
-			"bipPriceUsd":           priceChange.Price,
-			"bipPriceChange":        priceChange.Change,
+			"noahPriceUsd":          priceChange.Price,
+			"noahPriceChange":       priceChange.Change,
 			"marketCap":             getMarketCap(helpers.CalculateEmission(lastBlock.ID), priceChange.Price),
 			"latestBlockHeight":     lastBlock.ID,
 			"latestBlockTime":       lastBlock.CreatedAt.Format(time.RFC3339),
@@ -99,11 +99,11 @@ func GetStatusPage(c *gin.Context) {
 			"activeCandidates":    activeCandidates,
 			"averageTxCommission": helpers.Unit2Noah(tx24hData.FeeAvg),
 			"totalCommission":     helpers.Unit2Noah(tx24hData.FeeSum),
-			"totalDelegatedBip":   stakesSum,
+			"totalDelegatedNoah":  stakesSum,
 			"customCoinsSum":      helpers.QNoahStr2Noah(customCoinsData.ReserveSum),
 			"customCoinsCount":    customCoinsData.Count,
-			"freeFloatBip":        getFreeBipSum(stakesSum, lastBlock.ID),
-			"bipEmission":         helpers.CalculateEmission(lastBlock.ID),
+			"freeFloatNoah":       getFreeNoahSum(stakesSum, lastBlock.ID),
+			"noahEmission":        helpers.CalculateEmission(lastBlock.ID),
 		},
 	})
 }
@@ -159,7 +159,7 @@ func getTotalTxCountByLastDay(explorer *core.Explorer, ch chan int) {
 
 func getStakesSum(explorer *core.Explorer, ch chan string) {
 	ch <- explorer.Cache.Get(fmt.Sprintf("stakes_sum"), func() interface{} {
-		sum, err := explorer.StakeRepository.GetSumInBipValue()
+		sum, err := explorer.StakeRepository.GetSumInNoahValue()
 		helpers.CheckErr(err)
 
 		return helpers.QNoahStr2Noah(sum)
@@ -175,7 +175,7 @@ func getCustomCoinsData(explorer *core.Explorer, ch chan coins.CustomCoinsStatus
 	}, StatusPageCacheTime).(coins.CustomCoinsStatusData)
 }
 
-func getFreeBipSum(stakesSum string, lastBlockId uint64) float64 {
+func getFreeNoahSum(stakesSum string, lastBlockId uint64) float64 {
 	stakes, err := strconv.ParseFloat(stakesSum, 64)
 	helpers.CheckErr(err)
 	return float64(helpers.CalculateEmission(lastBlockId)) - stakes
@@ -186,14 +186,14 @@ func getTransactionSpeed(total int) float64 {
 }
 
 func getMarketPriceChange(explorer *core.Explorer, ch chan market.PriceChange) {
-	ch <- explorer.Cache.Get(fmt.Sprintf("bip_price"), func() interface{} {
+	ch <- explorer.Cache.Get(fmt.Sprintf("noah_price"), func() interface{} {
 		data, err := explorer.MarketService.GetCurrentFiatPriceChange(explorer.Environment.BaseCoin, "USD")
 		if err != nil {
 			return market.PriceChange{Price: 0, Change: 0}
 		}
 
 		return *data
-	}, BipPriceCacheTime).(market.PriceChange)
+	}, NoahPriceCacheTime).(market.PriceChange)
 }
 
 func calculateUptime(slow float64) float64 {
@@ -204,6 +204,6 @@ func isActive(lastBlock models.Block) bool {
 	return time.Now().Unix()-lastBlock.CreatedAt.Unix() <= config.NetworkActivePeriod
 }
 
-func getMarketCap(bipCount uint64, fiatPrice float64) float64 {
-	return float64(bipCount) * fiatPrice
+func getMarketCap(noahCount uint64, fiatPrice float64) float64 {
+	return float64(noahCount) * fiatPrice
 }
