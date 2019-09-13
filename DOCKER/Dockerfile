@@ -13,4 +13,5 @@ RUN make create_vendor && \
     cp ./builds/explorer /usr/local/bin/explorer
 
 CMD ["explorer"]
+EXPOSE 9050
 STOPSIGNAL SIGTERM
