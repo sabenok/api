@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
@@ -17,7 +18,7 @@ import (
 // Run API
 func Run(db *pg.DB, explorer *core.Explorer) {
 	router := SetupRouter(db, explorer)
-	appAddress := ":" + explorer.Environment.ServerPort
+	appAddress := fmt.Sprintf(":%d", explorer.Environment.ServerPort)
 	err := router.Run(appAddress)
 	helpers.CheckErr(err)
 }

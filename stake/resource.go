@@ -7,19 +7,19 @@ import (
 )
 
 type Resource struct {
-	Coin     string `json:"coin"`
-	Address  string `json:"address"`
-	Value    string `json:"value"`
-	BipValue string `json:"bip_value"`
+	Coin      string `json:"coin"`
+	Address   string `json:"address"`
+	Value     string `json:"value"`
+	NoahValue string `json:"noah_value"`
 }
 
 func (Resource) Transform(model resource.ItemInterface, params ...interface{}) resource.Interface {
 	stake := model.(models.Stake)
 
 	return Resource{
-		Coin:     stake.Coin.Symbol,
-		Address:  stake.OwnerAddress.GetAddress(),
-		Value:    helpers.QNoahStr2Noah(stake.Value),
-		BipValue: helpers.QNoahStr2Noah(stake.NoahValue),
+		Coin:      stake.Coin.Symbol,
+		Address:   stake.OwnerAddress.GetAddress(),
+		Value:     helpers.QNoahStr2Noah(stake.Value),
+		NoahValue: helpers.QNoahStr2Noah(stake.NoahValue),
 	}
 }
