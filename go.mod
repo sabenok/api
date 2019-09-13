@@ -2,7 +2,10 @@ module github.com/noah-blockchain/noah-explorer-api
 
 go 1.12
 
-replace mellium.im/sasl v0.2.1 => github.com/mellium/sasl v0.2.1
+replace (
+	github.com/ugorji/go v1.1.4 => github.com/ugorji/go v0.0.0-20190204201341-e444a5086c43
+	mellium.im/sasl v0.2.1 => github.com/mellium/sasl v0.2.1
+)
 
 require (
 	github.com/centrifugal/centrifuge-go v0.2.3
