@@ -13,6 +13,6 @@ require (
 	github.com/jpillora/backoff v0.0.0-20180909062703-3050d21c67d7 // indirect
 	github.com/noah-blockchain/noah-explorer-tools v0.1.1
 	github.com/noah-blockchain/noah-go-node v0.1.2
-	github.com/spf13/viper v1.4.0
 	gopkg.in/go-playground/validator.v8 v8.18.2
+	mellium.im/sasl v0.2.1 // indirect
 )

@@ -14,5 +14,5 @@ func NoahTxHash(
 }
 
 func isValidNoahHash(hash string) bool {
-	return regexp.MustCompile("^Mt([A-Fa-f0-9]{64})$").MatchString(hash)
+	return regexp.MustCompile("^Nt([A-Fa-f0-9]{64})$").MatchString(hash)
 }

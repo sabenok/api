@@ -2,17 +2,18 @@ package database
 
 import (
 	"fmt"
-	"github.com/noah-blockchain/noah-explorer-api/core"
 	"github.com/go-pg/pg"
+	"github.com/noah-blockchain/noah-explorer-api/core"
 )
 
 func Connect(env *core.Environment) *pg.DB {
 	options := &pg.Options{
-		User:     env.DbUser,
-		Password: env.DbPassword,
-		Database: env.DbName,
-		PoolSize: env.DbPoolSize,
-		Addr:     env.DbHost,
+		User:       env.DbUser,
+		Password:   env.DbPassword,
+		Database:   env.DbName,
+		PoolSize:   env.DbPoolSize,
+		Addr:       fmt.Sprintf("%s:%d", env.DbHost, env.DbPort),
+		MaxRetries: 10,
 	}
 
 	db := pg.Connect(options)

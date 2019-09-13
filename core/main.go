@@ -1,11 +1,12 @@
 package core
 
 import (
+	"github.com/go-pg/pg"
 	"github.com/noah-blockchain/noah-explorer-api/address"
-	"github.com/noah-blockchain/noah-explorer-api/bipdev"
 	"github.com/noah-blockchain/noah-explorer-api/blocks"
 	"github.com/noah-blockchain/noah-explorer-api/coins"
 	"github.com/noah-blockchain/noah-explorer-api/invalid_transaction"
+	"github.com/noah-blockchain/noah-explorer-api/noahdev"
 	"github.com/noah-blockchain/noah-explorer-api/reward"
 	"github.com/noah-blockchain/noah-explorer-api/slash"
 	"github.com/noah-blockchain/noah-explorer-api/stake"
@@ -13,7 +14,6 @@ import (
 	"github.com/noah-blockchain/noah-explorer-api/tools/market"
 	"github.com/noah-blockchain/noah-explorer-api/transaction"
 	"github.com/noah-blockchain/noah-explorer-api/validator"
-	"github.com/go-pg/pg"
 )
 
 type Explorer struct {
@@ -44,6 +44,6 @@ func NewExplorer(db *pg.DB, env *Environment) *Explorer {
 		StakeRepository:              *stake.NewRepository(db),
 		Environment:                  *env,
 		Cache:                        cache.NewCache(),
-		MarketService:                market.NewService(bipdev.NewApi(env.BipdevApiHost), env.BaseCoin),
+		MarketService:                market.NewService(noahdev.NewApi(env.NoahDevApiHost), env.BaseCoin),
 	}
 }

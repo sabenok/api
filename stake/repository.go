@@ -1,10 +1,10 @@
 package stake
 
 import (
+	"github.com/go-pg/pg"
 	"github.com/noah-blockchain/noah-explorer-api/helpers"
 	"github.com/noah-blockchain/noah-explorer-api/tools"
 	"github.com/noah-blockchain/noah-explorer-tools/models"
-	"github.com/go-pg/pg"
 )
 
 type Repository struct {
@@ -33,19 +33,19 @@ func (repository Repository) GetByAddress(address string, pagination *tools.Pagi
 	return stakes
 }
 
-// Get total delegated bip value
-func (repository Repository) GetSumInBipValue() (string, error) {
+// Get total delegated noah value
+func (repository Repository) GetSumInNoahValue() (string, error) {
 	var sum string
-	err := repository.db.Model(&models.Stake{}).ColumnExpr("SUM(bip_value)").Select(&sum)
+	err := repository.db.Model(&models.Stake{}).ColumnExpr("SUM(noah_value)").Select(&sum)
 	return sum, err
 }
 
 // Get total delegated sum by address
-func (repository Repository) GetSumInBipValueByAddress(address string) (string, error) {
+func (repository Repository) GetSumInNoahValueByAddress(address string) (string, error) {
 	var sum string
 	err := repository.db.Model(&models.Stake{}).
 		Column("OwnerAddress._").
-		ColumnExpr("SUM(bip_value)").
+		ColumnExpr("SUM(noah_value)").
 		Where("owner_address.address = ?", address).
 		Select(&sum)
 

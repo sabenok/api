@@ -1,7 +1,7 @@
-package bipdev
+package noahdev
 
 import (
-	"github.com/noah-blockchain/noah-explorer-api/bipdev/responses"
+	"github.com/noah-blockchain/noah-explorer-api/noahdev/responses"
 	"github.com/noah-blockchain/noah-explorer-api/tools"
 )
 

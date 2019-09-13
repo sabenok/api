@@ -25,5 +25,5 @@ func NoahAddress(
 }
 
 func isValidNoahAddress(address string) bool {
-	return regexp.MustCompile("^Mx([A-Fa-f0-9]{40})$").MatchString(address)
+	return regexp.MustCompile("^NOAHx([A-Fa-f0-9]{40})$").MatchString(address)
 }
